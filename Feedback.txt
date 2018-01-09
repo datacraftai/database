@@ -1,0 +1,16 @@
+-1 HeadQtr Address shouldnt be present in stores 
+
+-9 The relations for m-m should be as follows :
+
+ItemStores/ Hold (StoreID, ItemID, Qty held)
+
+StoreID and ItemID are FK from stores and items in to hold/itemstores.
+
+ItemsOrders/ItemsOrdered (ItemID, OrderNumber, Qty Ordered)
+
+ItemID and OrderNumber are FK into ItemsOrders/ItemsOrdered from Items and Orders.
+
+InCities/CitiesItems (ItemID, CityName, State, Qty_in_cities)
+
+
+ItemID, CityName, State are FK into InCities/CitiesItems from cities and Items. 
