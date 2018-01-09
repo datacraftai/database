@@ -2,76 +2,95 @@
   Student Name      : Ankita Upadhyay
   Student Z-ID      : Z1836412
 */
-SHOW TABLES; /*this SQL Command displays all the tables in the database*/
 
-DESC Customers;/*this SQL  Command dispalys the description of the Customers table*/
-  
-DESC Employees;/*this SQL Command dispalys the description of the Employees table*/
-
-DESC Offices;/*this SQL Command dispalys the description of the Offices table*/
-
-DESC OrderDetails;/*this SQL Command dispalys rhe description of the OrderDetails table*/
-
-DESC Orders;/*this SQL Command dispalys the description of the Orders table*/
-
-DESC Payments;/*this SQL Command dispalys the description of the Payments table*/
-
-DESC Products;/*this SQL Command dispalys the description of the Products table*/
-
-select  count(customerNumber) 
-from Customers;/*this SQL  query dispalys the number of cutomers in Customers table*/
-
-select count(distinct c.customerNumber) 
-from Orders o , Customers c 
-where o.customerNumber=c.customerNumber 
-order by c.customerNumber;/*this SQL  query dispalys the number of customers who have order*/
-
-select count(productCode) 
-from Products;/*This SQL  query displays number of products in Products table*/
-
-select * 
-from Products LIMIT 10;/*this SQL  query displays details of first 10 products*/
-
-select c.customerNumber,c.customerName,sum(p.amount) 
-from Customers c , Payments p 
-where c.customerNumber=p.customerNumber 
-group by c.customerNumber 
-LIMIT 15;/*/*this SQL  query dispalys first 15 total payment amount for each customer who has made a
-payment*/
-
-select city 
-from Offices 
-order by city;/*this SQL  query displays city name where there are Offices listing them in alphabetical orders*/
-
-select count(employeeNumber) 
-from Employees;/*this SQL Query displays total number of Employees*/
-
-select count(e.employeeNumber) No_of_Employees_in_each_office,o.officeCode 
-from Employees e , Offices o 
+/* 1. SQL Query to list employees working in each city*/
+select count(e.employeeNumber)Number_of_Employees_Working,o.city 
+from Employees e,Offices o 
 where o.officeCode=e.officeCode 
-group by o.officeCode;/*this SQL query lists number of employees,officeCode who work in each office*/
+group by o.city 
+order by o.city;
 
-select o.orderNumber,c.customerNumber 
-from Customers c,Orders o 
-where o.customerNumber=c.customerNumber 
+/* 2. SQL Query to List each employee first name and last name and the number of customers for each one.*/
+select e.firstName,e.lastName,count(c.customerNumber)Number_of_Customers 
+from Employees e,Customers c 
+where c.salesRepEmployeeNumber=e.employeeNumber 
+group by e.employeeNumber 
+order by e.firstName;
+
+/* 3. SQL Query to List each employee first name and last name and the first and last name of the person that employee reports to.*/
+select e.firstName Employee_First_Name,e.lastName Employee_Last_Name,
+e1.firstName Reports_To_First_Name,e1.lastName Reports_To_Last_Name 
+from Employees e,Employees e1 
+where e.reportsTo=e1.employeeNumber 
+order by e.firstName;
+
+/* 4. SQL Query to list the contact person (first name and last name) and the total amount of payments for first 25 customers.*/
+select c.contactFirstName,c.contactLastName,sum(p.amount) Total_Amount 
+from Customers c, Payments p 
+where c.customerNumber=p.customerNumber 
+group by c.CustomerNumber  
+order by c.customerNumber 
+LIMIT 25;
+
+/* 5. SQL Query to list How many customers live in the same city as their sales rep works*/
+select count(c.customerNumber)Number_of_Customers_who_live_in_same_city_as_their_Sale_Rep_work  
+from Customers c,Employees e, Offices o 
+where o.officeCode=e.officeCode 
+and o.city=c.city;
+
+/* 6. SQL Query to list How many customers live in the same city as their sales rep works,listing the name of the city and the number of customers.*/
+select count(c.customerNumber)Number_of_Customers_who_live_in_same_city_as_their_Sale_Rep_work ,o.city 
+from Customers c,Employees e, Offices o 
+where o.officeCode=e.officeCode 
+and o.city=c.city 
 group by c.customerNumber 
-having count(o.orderNumber)>5;/*this SQL query displays number of  orders for each customer who has placed an
-order and lists only those with more than 5 orders. */
+order by o.city;
 
-select count(orderNumber) 
-from Orders 
-where status='Shipped';/*this sql query displays total count of orders with Shipped Status*/
+/* 7. SQL Query to list Which customer (just the customer name) has ordered the most expensive product (based on the buyPrice)*/
+select c.CustomerName 
+from Customers c, Products p , OrderDetails od,Orders o 
+where od.productCode=p.productCode 
+and od.orderNumber=o.orderNumber 
+and o.customerNumber=c.customerNumber 
+and p.buyPrice=
+(select MAX(buyPrice) from Products);
 
-select distinct status 
-from Orders;/*this SQL query lists all status values for an order*/
+/* 8. SQL Query to list Which customer has made the largest payment? list just the customer name.*/
+select c.customerName 
+from Customers c, Payments p 
+where c.customerNumber=p.customerNumber 
+and p.amount=
+(select MAX(amount) from Payments);
 
-select concat(lastName,","," ",firstName) employeeName 
-from Employees 
-order by lastName desc;/*this SQL query lists all the employee names in the format last, first (for example
-Green, Joe) and lists them in reverse alphabetic order of last name. */
+/* 9. i) SQL Query to List all of the product descriptions for products from Min LinDiecast and Exoto Designs */
+select productDescription 
+from Products 
+where productVendor='Min Lin Diecast' 
+OR productVendor='Exoto Designs';
 
-select employeeNumber,concat(lastName,","," ",firstName) employeeName 
-from Employees 
-where officeCode=(select officeCode from Offices where city='London');/*this SQL query lists all of the employees who work in London*/
- 
- 
+/* 9. ii) SQL Query to List all of the product descriptions for products from Min LinDiecast and Exoto Designs */
+select productDescription 
+from Products 
+where productVendor 
+IN ('Min Lin Diecast','Exoto Designs');
+
+
+/*Extra credits 1. SQL Query to list the order number, the customer name and all of the product names on that order in ascending order of customer name for first 10 orders*/
+select o.orderNumber,c.customerName,group_concat(distinct p.productName) 
+from Orders o,Customers c,Products p ,OrderDetails od  
+where o.customerNumber=c.customerNumber  
+and od.productCode=p.productCode   
+and od.orderNumber=o.orderNumber 
+group by o.orderNumber  
+order by customerName  
+LIMIT 10;
+
+/*Extra credits 2. SQL Query to list the average dollar amount for each order*/
+select o.orderNumber,avg(p.amount) 
+from Payments p,Orders o,Customers c 
+where c.customerNumber=o.customerNumber 
+and o.customerNumber=p.customerNumber 
+group by o.orderNumber 
+order by o.orderNumber;
+
+

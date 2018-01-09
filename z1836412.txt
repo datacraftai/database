@@ -1,267 +1,556 @@
 mysql> source z1836412.sql
-+-------------------------+
-| Tables_in_classicmodels |
-+-------------------------+
-| Customers               |
-| Employees               |
-| Offices                 |
-| OrderDetails            |
-| Orders                  |
-| Payments                |
-| Products                |
-+-------------------------+
++-----------------------------+---------------+
+| Number_of_Employees_Working | city          |
++-----------------------------+---------------+
+|                           2 | Boston        |
+|                           2 | London        |
+|                           2 | NYC           |
+|                           5 | Paris         |
+|                           6 | San Francisco |
+|                           4 | Sydney        |
+|                           2 | Tokyo         |
++-----------------------------+---------------+
 7 rows in set (0.00 sec)
 
-+------------------------+-------------+------+-----+---------+-------+
-| Field                  | Type        | Null | Key | Default | Extra |
-+------------------------+-------------+------+-----+---------+-------+
-| customerNumber         | int(11)     | NO   | PRI | NULL    |       |
-| customerName           | varchar(50) | NO   |     | NULL    |       |
-| contactLastName        | varchar(50) | NO   |     | NULL    |       |
-| contactFirstName       | varchar(50) | NO   |     | NULL    |       |
-| phone                  | varchar(50) | NO   |     | NULL    |       |
-| addressLine1           | varchar(50) | NO   |     | NULL    |       |
-| addressLine2           | varchar(50) | YES  |     | NULL    |       |
-| city                   | varchar(50) | NO   |     | NULL    |       |
-| state                  | varchar(50) | YES  |     | NULL    |       |
-| postalCode             | varchar(15) | YES  |     | NULL    |       |
-| country                | varchar(50) | NO   |     | NULL    |       |
-| salesRepEmployeeNumber | int(11)     | YES  |     | NULL    |       |
-| creditLimit            | double      | YES  |     | NULL    |       |
-+------------------------+-------------+------+-----+---------+-------+
-13 rows in set (0.00 sec)
-
-+----------------+--------------+------+-----+---------+-------+
-| Field          | Type         | Null | Key | Default | Extra |
-+----------------+--------------+------+-----+---------+-------+
-| employeeNumber | int(11)      | NO   | PRI | NULL    |       |
-| lastName       | varchar(50)  | NO   |     | NULL    |       |
-| firstName      | varchar(50)  | NO   |     | NULL    |       |
-| extension      | varchar(10)  | NO   |     | NULL    |       |
-| email          | varchar(100) | NO   |     | NULL    |       |
-| officeCode     | varchar(20)  | NO   |     | NULL    |       |
-| reportsTo      | int(11)      | YES  |     | NULL    |       |
-| jobTitle       | varchar(50)  | NO   |     | NULL    |       |
-+----------------+--------------+------+-----+---------+-------+
-8 rows in set (0.01 sec)
-
-+--------------+-------------+------+-----+---------+-------+
-| Field        | Type        | Null | Key | Default | Extra |
-+--------------+-------------+------+-----+---------+-------+
-| officeCode   | varchar(50) | NO   | PRI | NULL    |       |
-| city         | varchar(50) | NO   |     | NULL    |       |
-| phone        | varchar(50) | NO   |     | NULL    |       |
-| addressLine1 | varchar(50) | NO   |     | NULL    |       |
-| addressLine2 | varchar(50) | YES  |     | NULL    |       |
-| state        | varchar(50) | YES  |     | NULL    |       |
-| country      | varchar(50) | NO   |     | NULL    |       |
-| postalCode   | varchar(10) | NO   |     | NULL    |       |
-| territory    | varchar(10) | NO   |     | NULL    |       |
-+--------------+-------------+------+-----+---------+-------+
-9 rows in set (0.00 sec)
-
-+-----------------+-------------+------+-----+---------+-------+
-| Field           | Type        | Null | Key | Default | Extra |
-+-----------------+-------------+------+-----+---------+-------+
-| orderNumber     | int(11)     | NO   | PRI | NULL    |       |
-| productCode     | varchar(50) | NO   | PRI | NULL    |       |
-| quantityOrdered | int(11)     | NO   |     | NULL    |       |
-| priceEach       | double      | NO   |     | NULL    |       |
-| orderLineNumber | smallint(6) | NO   |     | NULL    |       |
-+-----------------+-------------+------+-----+---------+-------+
-5 rows in set (0.00 sec)
-
-+----------------+-------------+------+-----+---------+-------+
-| Field          | Type        | Null | Key | Default | Extra |
-+----------------+-------------+------+-----+---------+-------+
-| orderNumber    | int(11)     | NO   | PRI | NULL    |       |
-| orderDate      | datetime    | NO   |     | NULL    |       |
-| requiredDate   | datetime    | NO   |     | NULL    |       |
-| shippedDate    | datetime    | YES  |     | NULL    |       |
-| status         | varchar(15) | NO   |     | NULL    |       |
-| comments       | text        | YES  |     | NULL    |       |
-| customerNumber | int(11)     | NO   |     | NULL    |       |
-+----------------+-------------+------+-----+---------+-------+
-7 rows in set (0.00 sec)
-
-+----------------+-------------+------+-----+---------+-------+
-| Field          | Type        | Null | Key | Default | Extra |
-+----------------+-------------+------+-----+---------+-------+
-| customerNumber | int(11)     | NO   | PRI | NULL    |       |
-| checkNumber    | varchar(50) | NO   | PRI | NULL    |       |
-| paymentDate    | datetime    | NO   |     | NULL    |       |
-| amount         | double      | NO   |     | NULL    |       |
-+----------------+-------------+------+-----+---------+-------+
-4 rows in set (0.00 sec)
-
-+--------------------+-------------+------+-----+---------+-------+
-| Field              | Type        | Null | Key | Default | Extra |
-+--------------------+-------------+------+-----+---------+-------+
-| productCode        | varchar(50) | NO   | PRI | NULL    |       |
-| productName        | varchar(70) | NO   |     | NULL    |       |
-| productLine        | varchar(50) | NO   |     | NULL    |       |
-| productScale       | varchar(10) | NO   |     | NULL    |       |
-| productVendor      | varchar(50) | NO   |     | NULL    |       |
-| productDescription | text        | NO   |     | NULL    |       |
-| quantityInStock    | smallint(6) | NO   |     | NULL    |       |
-| buyPrice           | double      | NO   |     | NULL    |       |
-| MSRP               | double      | NO   |     | NULL    |       |
-+--------------------+-------------+------+-----+---------+-------+
-9 rows in set (0.00 sec)
-
-+-----------------------+
-| count(customerNumber) |
-+-----------------------+
-|                   122 |
-+-----------------------+
-1 row in set (0.00 sec)
-
-+----------------------------------+
-| count(distinct c.customerNumber) |
-+----------------------------------+
-|                               98 |
-+----------------------------------+
-1 row in set (0.00 sec)
-
-+--------------------+
-| count(productCode) |
-+--------------------+
-|                110 |
-+--------------------+
-1 row in set (0.00 sec)
-
-+-------------+---------------------------------------+------------------+--------------+---------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+----------+--------+
-| productCode | productName                           | productLine      | productScale | productVendor             | productDescription                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | quantityInStock | buyPrice | MSRP   |
-+-------------+---------------------------------------+------------------+--------------+---------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+----------+--------+
-| S10_1678    | 1969 Harley Davidson Ultimate Chopper | Motorcycles      | 1:10         | Min Lin Diecast           | This replica features working kickstand, front suspension, gear-shift lever, footbrake lever, drive chain, wheels and steering. All parts are particularly delicate due to their precise scale and require special care and attention.                                                                                                                                                                                                                                                                          |            7933 |    48.81 |   95.7 |
-| S10_1949    | 1952 Alpine Renault 1300              | Classic Cars     | 1:10         | Classic Metal Creations   | Turnable front wheels; steering function; detailed interior; detailed engine; opening hood; opening trunk; opening doors; and detailed chassis.                                                                                                                                                                                                                                                                                                                                                                 |            7305 |    98.58 |  214.3 |
-| S10_2016    | 1996 Moto Guzzi 1100i                 | Motorcycles      | 1:10         | Highway 66 Mini Classics  | Official Moto Guzzi logos and insignias, saddle bags located on side of motorcycle, detailed engine, working steering, working suspension, two leather seats, luggage rack, dual exhaust pipes, small saddle bag located on handle bars, two-tone paint with chrome accents, superior die-cast detail , rotating wheels , working kick stand, diecast metal with plastic parts and baked enamel finish.                                                                                                         |            6625 |    68.99 | 118.94 |
-| S10_4698    | 2003 Harley-Davidson Eagle Drag Bike  | Motorcycles      | 1:10         | Red Start Diecast         | Model features, official Harley Davidson logos and insignias, detachable rear wheelie bar, heavy diecast metal with resin parts, authentic multi-color tampo-printed graphics, separate engine drive belts, free-turning front fork, rotating tires and rear racing slick, certificate of authenticity, detailed engine, display stand
-, precision diecast replica, baked enamel finish, 1:10 scale model, removable fender, seat and tank cover piece for displaying the superior detail of the v-twin engine |            5582 |    91.02 | 193.66 |
-| S10_4757    | 1972 Alfa Romeo GTA                   | Classic Cars     | 1:10         | Motor City Art Classics   | Features include: Turnable front wheels; steering function; detailed interior; detailed engine; opening hood; opening trunk; opening doors; and detailed chassis.                                                                                                                                                                                                                                                                                                                                               |            3252 |    85.68 |    136 |
-| S10_4962    | 1962 LanciaA Delta 16V                | Classic Cars     | 1:10         | Second Gear Diecast       | Features include: Turnable front wheels; steering function; detailed interior; detailed engine; opening hood; opening trunk; opening doors; and detailed chassis.                                                                                                                                                                                                                                                                                                                                               |            6791 |   103.42 | 147.74 |
-| S12_1099    | 1968 Ford Mustang                     | Classic Cars     | 1:12         | Autoart Studio Design     | Hood, doors and trunk all open to reveal highly detailed interior features. Steering wheel actually turns the front wheels. Color dark green.                                                                                                                                                                                                                                                                                                                                                                   |              68 |    95.34 | 194.57 |
-| S12_1108    | 2001 Ferrari Enzo                     | Classic Cars     | 1:12         | Second Gear Diecast       | Turnable front wheels; steering function; detailed interior; detailed engine; opening hood; opening trunk; opening doors; and detailed chassis.                                                                                                                                                                                                                                                                                                                                                                 |            3619 |    95.59 |  207.8 |
-| S12_1666    | 1958 Setra Bus                        | Trucks and Buses | 1:12         | Welly Diecast Productions | Model features 30 windows, skylights & glare resistant glass, working steering system, original logos                                                                                                                                                                                                                                                                                                                                                                                                           |            1579 |     77.9 | 136.67 |
-| S12_2823    | 2002 Suzuki XREO                      | Motorcycles      | 1:12         | Unimax Art Galleries      | Official logos and insignias, saddle bags located on side of motorcycle, detailed engine, working steering, working suspension, two leather seats, luggage rack, dual exhaust pipes, small saddle bag located on handle bars, two-tone paint with chrome accents, superior die-cast detail , rotating wheels , working kick stand, diecast metal with plastic parts and baked enamel finish.                                                                                                                    |            9997 |    66.27 | 150.62 |
-+-------------+---------------------------------------+------------------+--------------+---------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+----------+--------+
-10 rows in set (0.00 sec)
-
-+----------------+------------------------------+--------------------+
-| customerNumber | customerName                 | sum(p.amount)      |
-+----------------+------------------------------+--------------------+
-|            103 | Atelier graphique            |           24179.96 |
-|            112 | Signal Gift Stores           |           82751.08 |
-|            114 | Australian Collectors, Co.   |          195364.73 |
-|            119 | La Rochelle Gifts            |          136340.25 |
-|            121 | Baane Mini Imports           |          116599.19 |
-|            124 | Mini Gifts Distributors Ltd. |          647596.29 |
-|            128 | Blauer See Auto, Co.         |           85171.59 |
-|            129 | Mini Wheels Co.              |  74476.18000000001 |
-|            131 | Land of Toys Inc.            |          164069.44 |
-|            141 | Euro+ Shopping Channel       |          793051.13 |
-|            144 | Volvo Model Replicas, Co     |           75754.88 |
-|            145 | Danish Wholesale Imports     | 119028.73000000001 |
-|            146 | Saveley & Henriot, Co.       |          142874.25 |
-|            148 | Dragon Souveniers, Ltd.      |          172989.68 |
-|            151 | Muscle Machine Inc           | 197736.93999999997 |
-+----------------+------------------------------+--------------------+
++-----------+-----------+---------------------+
+| firstName | lastName  | Number_of_Customers |
++-----------+-----------+---------------------+
+| Andy      | Fixter    |                   5 |
+| Barry     | Jones     |                   9 |
+| Foon Yue  | Tseng     |                   7 |
+| George    | Vanauf    |                   8 |
+| Gerard    | Hernandez |                   7 |
+| Julie     | Firrelli  |                   6 |
+| Larry     | Bott      |                   8 |
+| Leslie    | Jennings  |                   6 |
+| Leslie    | Thompson  |                   6 |
+| Loui      | Bondur    |                   6 |
+| Mami      | Nishi     |                   5 |
+| Martin    | Gerard    |                   6 |
+| Pamela    | Castillo  |                  10 |
+| Peter     | Marsh     |                   5 |
+| Steve     | Patterson |                   6 |
++-----------+-----------+---------------------+
 15 rows in set (0.00 sec)
 
-+---------------+
-| city          |
-+---------------+
-| Boston        |
-| London        |
-| NYC           |
-| Paris         |
-| San Francisco |
-| Sydney        |
-| Tokyo         |
-+---------------+
-7 rows in set (0.00 sec)
++---------------------+--------------------+-----------------------+----------------------+
+| Employee_First_Name | Employee_Last_Name | Reports_To_First_Name | Reports_To_Last_Name |
++---------------------+--------------------+-----------------------+----------------------+
+| Andy                | Fixter             | William               | Patterson            |
+| Anthony             | Bow                | Mary                  | Patterson            |
+| Barry               | Jones              | Gerard                | Bondur               |
+| Foon Yue            | Tseng              | Anthony               | Bow                  |
+| George              | Vanauf             | Anthony               | Bow                  |
+| Gerard              | Bondur             | Mary                  | Patterson            |
+| Gerard              | Hernandez          | Gerard                | Bondur               |
+| Jeff                | Firrelli           | Diane                 | Murphy               |
+| Julie               | Firrelli           | Anthony               | Bow                  |
+| Larry               | Bott               | Gerard                | Bondur               |
+| Leslie              | Jennings           | Anthony               | Bow                  |
+| Leslie              | Thompson           | Anthony               | Bow                  |
+| Loui                | Bondur             | Gerard                | Bondur               |
+| Mami                | Nishi              | William               | Patterson            |
+| Martin              | Gerard             | Gerard                | Bondur               |
+| Mary                | Patterson          | Diane                 | Murphy               |
+| Pamela              | Castillo           | Gerard                | Bondur               |
+| Peter               | Marsh              | William               | Patterson            |
+| Steve               | Patterson          | Anthony               | Bow                  |
+| Tom                 | King               | William               | Patterson            |
+| William             | Patterson          | Mary                  | Patterson            |
+| Yoshimi             | Kato               | William               | Patterson            |
++---------------------+--------------------+-----------------------+----------------------+
+22 rows in set (0.00 sec)
 
-+-----------------------+
-| count(employeeNumber) |
-+-----------------------+
-|                    23 |
-+-----------------------+
++------------------+-----------------+--------------------+
+| contactFirstName | contactLastName | Total_Amount       |
++------------------+-----------------+--------------------+
+| Carine           | Schmitt         |           24179.96 |
+| Sue              | King            |           82751.08 |
+| Peter            | Ferguson        |          195364.73 |
+| Janine           | Labrune         |          136340.25 |
+| Jonas            | Bergulfsen      |          116599.19 |
+| Valarie          | Nelson          |          647596.29 |
+| Roland           | Keitel          |           85171.59 |
+| Julie            | Murphy          |  74476.18000000001 |
+| Kwai             | Yu              |          164069.44 |
+| Diego            | Freyre          |          793051.13 |
+| Christina        | Berglund        |           75754.88 |
+| Jytte            | Petersen        | 119028.73000000001 |
+| Mary             | Saveley         |          142874.25 |
+| Eric             | Natividad       |          172989.68 |
+| Jeff             | Young           | 197736.93999999997 |
+| Kyung            | Yu              |          115971.34 |
+| Juri             | Hirano          | 120783.06999999999 |
+| Wendy            | Victorino       |          112911.15 |
+| Veysel           | Oeztan          |          111640.28 |
+| Martine          | Rancé           |           69052.41 |
+| Marie            | Bertrand        |           97203.68 |
+| Kyung            | Tseng           |           36163.62 |
+| Julie            | King            |  70246.31999999999 |
+| Mory             | Kentary         |           67605.07 |
+| Michael          | Frick           |  88041.26000000001 |
++------------------+-----------------+--------------------+
+25 rows in set (0.01 sec)
+
++------------------------------------------------------------------+
+| Number_of_Customers_who_live_in_same_city_as_their_Sale_Rep_work |
++------------------------------------------------------------------+
+|                                                               45 |
++------------------------------------------------------------------+
 1 row in set (0.00 sec)
 
-+--------------------------------+------------+
-| No_of_Employees_in_each_office | officeCode |
-+--------------------------------+------------+
-|                              6 | 1          |
-|                              2 | 2          |
-|                              2 | 3          |
-|                              5 | 4          |
-|                              2 | 5          |
-|                              4 | 6          |
-|                              2 | 7          |
-+--------------------------------+------------+
-7 rows in set (0.00 sec)
++------------------------------------------------------------------+---------------+
+| Number_of_Customers_who_live_in_same_city_as_their_Sale_Rep_work | city          |
++------------------------------------------------------------------+---------------+
+|                                                                2 | Boston        |
+|                                                                2 | Boston        |
+|                                                                2 | London        |
+|                                                                2 | London        |
+|                                                                2 | NYC           |
+|                                                                2 | NYC           |
+|                                                                2 | NYC           |
+|                                                                2 | NYC           |
+|                                                                2 | NYC           |
+|                                                                5 | Paris         |
+|                                                                5 | Paris         |
+|                                                                5 | Paris         |
+|                                                                6 | San Francisco |
+|                                                                6 | San Francisco |
++------------------------------------------------------------------+---------------+
+14 rows in set (0.00 sec)
 
-+-------------+----------------+
-| orderNumber | customerNumber |
-+-------------+----------------+
-|       10113 |            124 |
-|       10104 |            141 |
-+-------------+----------------+
-2 rows in set (0.00 sec)
++--------------------------------+
+| CustomerName                   |
++--------------------------------+
+| Baane Mini Imports             |
+| La Corne D'abondance, Co.      |
+| Corrida Auto Replicas, Ltd     |
+| Technics Stores Inc.           |
+| Dragon Souveniers, Ltd.        |
+| Mini Auto Werke                |
+| Stylish Desk Decors, Co.       |
+| Classic Gift Ideas, Inc        |
+| Saveley & Henriot, Co.         |
+| Diecast Collectables           |
+| Handji Gifts& Co               |
+| Mini Gifts Distributors Ltd.   |
+| Super Scale Inc.               |
+| Handji Gifts& Co               |
+| Souveniers And Things Co.      |
+| Diecast Classics Inc.          |
+| Scandinavian Gift Ideas        |
+| Marta's Replicas Co.           |
+| Canadian Gift Exchange Network |
+| Online Diecast Creations Co.   |
+| Volvo Model Replicas, Co       |
+| Australian Collectors, Co.     |
+| Mini Gifts Distributors Ltd.   |
+| Anna's Decorations, Ltd        |
+| Corporate Gift Ideas Co.       |
+| Anna's Decorations, Ltd        |
+| Québec Home Shopping Network   |
+| La Rochelle Gifts              |
++--------------------------------+
+28 rows in set (0.00 sec)
 
-+--------------------+
-| count(orderNumber) |
-+--------------------+
-|                303 |
-+--------------------+
++------------------------+
+| customerName           |
++------------------------+
+| Euro+ Shopping Channel |
++------------------------+
 1 row in set (0.00 sec)
 
-+------------+
-| status     |
-+------------+
-| Shipped    |
-| Resolved   |
-| Cancelled  |
-| On Hold    |
-| Disputed   |
-| In Process |
-+------------+
-6 rows in set (0.00 sec)
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| productDescription                                                                                                                                                                                                                                                                            |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| This replica features working kickstand, front suspension, gear-shift lever, footbrake lever, drive chain, wheels and steering. All parts are particularly delicate due to their precise scale and require special care and attention.                                                        |
+| 1:12 scale die-cast about 20" long Hood opens, Rubber wheels                                                                                                                                                                                                                                  |
+| This model features, opening hood, opening doors, detailed engine, rear spoiler, opening trunk, working steering, tinted windows, baked enamel finish. Color yellow.                                                                                                                          |
+| Chrome Trim, Chrome Grille, Opening Hood, Opening Doors, Opening Trunk, Detailed Engine, Working Steering System                                                                                                                                                                              |
+| Exact replica. Wood and Metal. Many extras including rigging, long boats, pilot house, anchors, etc. Comes with three masts, all square-rigged.                                                                                                                                               |
+| This replica features opening doors, superb detail and craftsmanship, working steering system, opening forward compartment, opening rear trunk with removable spare, 4 wheel independent spring suspension as well as factory baked enamel finish.                                            |
+| Features Gold Trim, Full Size Spare Tire, Chrome Trim, Chrome Grille, Opening Hood, Opening Doors, Opening Trunk, Detailed Engine, Working Steering System                                                                                                                                    |
+| Features opening hood, opening doors, opening trunk, wide white wall tires, front door arm rests, working steering system, leather upholstery. Color black.                                                                                                                                   |
+| Features include opening and closing doors. Color: White.                                                                                                                                                                                                                                     |
+| This 1:18 scale precision die cast replica features the 6 front headlights of the original, plus a detailed version of the 142 horsepower straight 8 engine, dual spares and their famous comprehensive dashboard. Color black.                                                               |
+| Features opening trunk,  working steering system                                                                                                                                                                                                                                              |
+| Precision crafted hand-assembled 1:18 scale reproduction of the 1952 15CV, with its independent spring suspension, working steering system, opening doors and hood, detailed engine and instrument panel, all topped of with a factory fresh baked enamel finish.                             |
+| This model features chrome trim and grille, opening hood, opening doors, opening trunk, detailed engine, working steering system. Color white.                                                                                                                                                |
+| 1969 Z/28 Chevy Camaro 1:24 scale replica. The operating parts of this limited edition 1:24 scale diecast model car 1969 Chevy Camaro Z28- hood, trunk, wheels, streering, suspension and doors- are particularly delicate due to their precise scale and require special care and attention. |
+| This replica features opening doors, superb detail and craftsmanship, working steering system, opening forward compartment, opening rear trunk with removable spare, 4 wheel independent spring suspension as well as factory baked enamel finish.                                            |
+| Features official die-struck logos and baked enamel finish. Comes with stand.                                                                                                                                                                                                                 |
+| Exact replia with official logos and insignias and retractable wheels                                                                                                                                                                                                                         |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+17 rows in set (0.00 sec)
 
-+--------------------+
-| employeeName       |
-+--------------------+
-| Vanauf, George     |
-| Tseng, Foon Yue    |
-| Thompson, Leslie   |
-| Patterson, Mary    |
-| Patterson, William |
-| Patterson, Steve   |
-| Nishi, Mami        |
-| Murphy, Diane      |
-| Marsh, Peter       |
-| King, Tom          |
-| Kato, Yoshimi      |
-| Jones, Barry       |
-| Jennings, Leslie   |
-| Hernandez, Gerard  |
-| Gerard, Martin     |
-| Fixter, Andy       |
-| Firrelli, Jeff     |
-| Firrelli, Julie    |
-| Castillo, Pamela   |
-| Bow, Anthony       |
-| Bott, Larry        |
-| Bondur, Loui       |
-| Bondur, Gerard     |
-+--------------------+
-23 rows in set (0.00 sec)
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| productDescription                                                                                                                                                                                                                                                                            |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| This replica features working kickstand, front suspension, gear-shift lever, footbrake lever, drive chain, wheels and steering. All parts are particularly delicate due to their precise scale and require special care and attention.                                                        |
+| 1:12 scale die-cast about 20" long Hood opens, Rubber wheels                                                                                                                                                                                                                                  |
+| This model features, opening hood, opening doors, detailed engine, rear spoiler, opening trunk, working steering, tinted windows, baked enamel finish. Color yellow.                                                                                                                          |
+| Chrome Trim, Chrome Grille, Opening Hood, Opening Doors, Opening Trunk, Detailed Engine, Working Steering System                                                                                                                                                                              |
+| Exact replica. Wood and Metal. Many extras including rigging, long boats, pilot house, anchors, etc. Comes with three masts, all square-rigged.                                                                                                                                               |
+| This replica features opening doors, superb detail and craftsmanship, working steering system, opening forward compartment, opening rear trunk with removable spare, 4 wheel independent spring suspension as well as factory baked enamel finish.                                            |
+| Features Gold Trim, Full Size Spare Tire, Chrome Trim, Chrome Grille, Opening Hood, Opening Doors, Opening Trunk, Detailed Engine, Working Steering System                                                                                                                                    |
+| Features opening hood, opening doors, opening trunk, wide white wall tires, front door arm rests, working steering system, leather upholstery. Color black.                                                                                                                                   |
+| Features include opening and closing doors. Color: White.                                                                                                                                                                                                                                     |
+| This 1:18 scale precision die cast replica features the 6 front headlights of the original, plus a detailed version of the 142 horsepower straight 8 engine, dual spares and their famous comprehensive dashboard. Color black.                                                               |
+| Features opening trunk,  working steering system                                                                                                                                                                                                                                              |
+| Precision crafted hand-assembled 1:18 scale reproduction of the 1952 15CV, with its independent spring suspension, working steering system, opening doors and hood, detailed engine and instrument panel, all topped of with a factory fresh baked enamel finish.                             |
+| This model features chrome trim and grille, opening hood, opening doors, opening trunk, detailed engine, working steering system. Color white.                                                                                                                                                |
+| 1969 Z/28 Chevy Camaro 1:24 scale replica. The operating parts of this limited edition 1:24 scale diecast model car 1969 Chevy Camaro Z28- hood, trunk, wheels, streering, suspension and doors- are particularly delicate due to their precise scale and require special care and attention. |
+| This replica features opening doors, superb detail and craftsmanship, working steering system, opening forward compartment, opening rear trunk with removable spare, 4 wheel independent spring suspension as well as factory baked enamel finish.                                            |
+| Features official die-struck logos and baked enamel finish. Comes with stand.                                                                                                                                                                                                                 |
+| Exact replia with official logos and insignias and retractable wheels                                                                                                                                                                                                                         |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+17 rows in set (0.00 sec)
 
-+----------------+--------------+
-| employeeNumber | employeeName |
-+----------------+--------------+
-|           1501 | Bott, Larry  |
-|           1504 | Jones, Barry |
-+----------------+--------------+
-2 rows in set (0.00 sec)
++-------------+-------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| orderNumber | customerName            | group_concat(distinct p.productName)                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
++-------------+-------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|       10136 | Alpha Cognac            | 1995 Honda Civic,1993 Mazda RX-7,1992 Ferrari 360 Spider red                                                                                                                                                                                                                                                                                                                                                                                                                            |
+|       10178 | Alpha Cognac            | 1972 Alfa Romeo GTA,1999 Yamaha Speed Boat,1900s Vintage Bi-Plane,1940 Ford Delivery Sedan,HMS Bounty,American Airlines: MD-11S,1980s Black Hawk Helicopter,1941 Chevrolet Special Deluxe Cabriolet,1937 Horch 930V Limousine,Corsair F4U ( Bird Cage),America West Airlines B757-200,Boeing X-32A JSF                                                                                                                                                                                  |
+|       10397 | Alpha Cognac            | The USS Constitution Ship,The Queen Mary,The Mayflower,The Titanic,Pont Yacht                                                                                                                                                                                                                                                                                                                                                                                                           |
+|       10280 | Amica Models & Co.      | 1952 Alpine Renault 1300,1937 Lincoln Berline,1917 Grand Touring Sedan,1932 Model A Ford J-Coupe,1913 Ford Model T Speedster,18th Century Vintage Horse Carriage,1932 Alfa Romeo 8C2300 Spider Sport,1938 Cadillac V-16 Presidential Limousine,1936 Chrysler Airflow,1940 Ford Pickup Truck,1936 Mercedes-Benz 500K Special Roadster,1911 Ford Town Car,1928 Mercedes-Benz SSK,1934 Ford V8 Coupe,1917 Maxwell Touring Car,1939 Chevrolet Deluxe Coupe,1936 Mercedes Benz 500k Roadster |
+|       10293 | Amica Models & Co.      | 2001 Ferrari Enzo,1969 Ford Falcon,Collectable Wooden Train,18th century schooner,Pont Yacht,1969 Corvair Monza,1903 Ford Model A,1904 Buick Runabout,The Mayflower                                                                                                                                                                                                                                                                                                                     |
+|       10148 | Anna's Decorations, Ltd | 1965 Aston Martin DB5,1999 Indy 500 Monte Carlo SS,1948 Porsche Type 356 Roadster,1957 Ford Thunderbird,1966 Shelby Cobra 427 S/C,1952 Citroen-15CV,2002 Chevy Corvette,1993 Mazda RX-7,1995 Honda Civic,1992 Ferrari 360 Spider red,1932 Alfa Romeo 8C2300 Spider Sport,1970 Chevy Chevelle SS 454,1949 Jaguar XK 120,1969 Chevrolet Camaro Z28                                                                                                                                        |
+|       10169 | Anna's Decorations, Ltd | 2002 Suzuki XREO,1969 Dodge Super Bee,1957 Vespa GS150,1982 Ducati 900 Monster,1961 Chevrolet Impala,1974 Ducati 350 Mk3 Desmo,1968 Ford Mustang,1970 Plymouth Hemi Cuda,1976 Ford Gran Torino,1957 Corvette Convertible,1971 Alpine Renault 1600s,1982 Ducati 996 R,2002 Yamaha YZR M1                                                                                                                                                                                                 |
+|       10370 | Anna's Decorations, Ltd | 1958 Setra Bus,1964 Mercedec Tour Bus,1992 Ferrari 360 Spider red,1939 Cadillac Limousine,1962 LanciaA Delta 16V,1940 Ford Pickup Truck,1926 Ford Fire Engine,1940s Ford truck,1996 Peterbilt 379 Stake Bed with Outrigger                                                                                                                                                                                                                                                              |
+|       10391 | Anna's Decorations, Ltd | 1952 Alpine Renault 1300,1958 Setra Bus,1937 Lincoln Berline,1926 Ford Fire Engine,1939 Chevrolet Deluxe Coupe,1962 LanciaA Delta 16V,1940 Ford Pickup Truck,1936 Mercedes-Benz 500K Special Roadster,1913 Ford Model T Speedster,1938 Cadillac V-16 Presidential Limousine                                                                                                                                                                                                             |
+|       10123 | Atelier graphique       | 1965 Aston Martin DB5,1948 Porsche Type 356 Roadster,1999 Indy 500 Monte Carlo SS,1966 Shelby Cobra 427 S/C                                                                                                                                                                                                                                                                                                                                                                             |
++-------------+-------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+10 rows in set (0.00 sec)
+
++-------------+--------------------+
+| orderNumber | avg(p.amount)      |
++-------------+--------------------+
+|       10100 |            43895.1 |
+|       10101 |         21292.8975 |
+|       10102 |  29347.08666666667 |
+|       10103 |         29149.7975 |
+|       10104 |  61003.93307692308 |
+|       10105 | 29757.182500000003 |
+|       10106 |           45985.24 |
+|       10107 |           41017.36 |
+|       10108 | 31338.576666666664 |
+|       10109 | 27894.053333333333 |
+|       10110 |  52602.60333333333 |
+|       10111 | 24825.393333333337 |
+|       10112 |           37877.44 |
+|       10113 |          64759.629 |
+|       10114 | 32401.226666666666 |
+|       10115 | 25931.733333333334 |
+|       10116 |           8360.025 |
+|       10117 |           43247.42 |
+|       10118 | 23159.426666666666 |
+|       10119 |  27558.52666666667 |
+|       10120 |         48841.1825 |
+|       10121 |          33760.735 |
+|       10122 | 24978.713333333333 |
+|       10123 |  8059.986666666667 |
+|       10124 | 27583.693333333333 |
+|       10125 |         48841.1825 |
+|       10126 |  40205.09333333333 |
+|       10127 |  49434.23499999999 |
+|       10128 |  61003.93307692308 |
+|       10129 |            29601.5 |
+|       10130 |            8826.42 |
+|       10131 |           19098.14 |
+|       10132 | 31427.457500000004 |
+|       10133 |  61003.93307692308 |
+|       10134 |  26190.11333333333 |
+|       10135 |          64759.629 |
+|       10136 | 23496.146666666667 |
+|       10137 |          33760.735 |
+|       10138 | 39275.284999999996 |
+|       10139 |  35866.51666666666 |
+|       10140 | 30195.767499999998 |
+|       10141 | 37987.049999999996 |
+|       10142 |          64759.629 |
+|       10143 | 36317.043333333335 |
+|       10144 |           8360.025 |
+|       10145 |  34853.98666666667 |
+|       10146 |           19098.14 |
+|       10147 |           27192.66 |
+|       10148 |         38499.0325 |
+|       10149 | 25109.254999999997 |
+|       10150 |           43247.42 |
+|       10151 |  34790.12666666667 |
+|       10152 | 19823.039999999997 |
+|       10153 |  61003.93307692308 |
+|       10154 |  4564.674999999999 |
+|       10155 |           37083.46 |
+|       10156 |  61003.93307692308 |
+|       10157 |          14475.955 |
+|       10158 |         29149.7975 |
+|       10159 |           74941.25 |
+|       10160 |           24024.23 |
+|       10161 |          50297.775 |
+|       10162 |           74941.25 |
+|       10163 | 25931.733333333334 |
+|       10164 |            17421.3 |
+|       10165 |           43247.42 |
+|       10166 |           32974.59 |
+|       10167 |  44753.11000000001 |
+|       10168 | 30195.767499999998 |
+|       10169 |         38499.0325 |
+|       10170 |            17421.3 |
+|       10171 |           20255.91 |
+|       10172 | 35123.159999999996 |
+|       10173 |           45985.24 |
+|       10174 | 19823.039999999997 |
+|       10175 |            29601.5 |
+|       10176 |          50545.695 |
+|       10177 |          24821.025 |
+|       10178 | 23496.146666666667 |
+|       10179 | 39275.284999999996 |
+|       10180 |          34526.205 |
+|       10181 |           55820.14 |
+|       10182 |          64759.629 |
+|       10183 |          33753.485 |
+|       10184 | 27361.809999999998 |
+|       10185 | 36317.043333333335 |
+|       10186 |           18009.52 |
+|       10187 |           48784.36 |
+|       10188 |           55820.14 |
+|       10189 |  34853.98666666667 |
+|       10190 |  61003.93307692308 |
+|       10191 |  50153.28999999999 |
+|       10192 |            43895.1 |
+|       10193 |          25106.685 |
+|       10194 |           47624.75 |
+|       10195 | 42777.994999999995 |
+|       10196 |          39736.035 |
+|       10197 | 23159.426666666666 |
+|       10198 | 31338.576666666664 |
+|       10199 |           23042.32 |
+|       10200 |           48784.36 |
+|       10201 | 24825.393333333337 |
+|       10202 | 32356.675000000003 |
+|       10203 |  61003.93307692308 |
+|       10204 |  49434.23499999999 |
+|       10205 |  61003.93307692308 |
+|       10206 |           37619.46 |
+|       10207 |           35429.89 |
+|       10208 |           47624.75 |
+|       10209 |           24024.23 |
+|       10210 |          33802.535 |
+|       10211 |           39551.93 |
+|       10212 |  61003.93307692308 |
+|       10213 |           18009.52 |
+|       10214 |  40205.09333333333 |
+|       10215 |           23042.32 |
+|       10216 | 32417.149999999998 |
+|       10217 | 37637.049999999996 |
+|       10218 |          14475.955 |
+|       10219 | 25109.254999999997 |
+|       10220 |          28878.215 |
+|       10221 |          33280.285 |
+|       10222 |           87489.23 |
+|       10223 |         48841.1825 |
+|       10224 |          34526.205 |
+|       10225 |           58856.78 |
+|       10226 |           87489.23 |
+|       10227 |           47624.75 |
+|       10228 |           18081.81 |
+|       10229 |          64759.629 |
+|       10230 |         21292.8975 |
+|       10231 |          24821.025 |
+|       10232 |           39120.42 |
+|       10233 |          18354.595 |
+|       10234 |           36160.56 |
+|       10235 |          37317.425 |
+|       10236 | 27894.053333333333 |
+|       10237 |  29347.08666666667 |
+|       10238 | 29757.182500000003 |
+|       10239 |  34790.12666666667 |
+|       10240 |          33802.535 |
+|       10241 | 22379.065000000002 |
+|       10242 |          16572.465 |
+|       10243 |           35429.89 |
+|       10244 |  61003.93307692308 |
+|       10245 |          39736.035 |
+|       10246 |  61003.93307692308 |
+|       10247 | 37987.049999999996 |
+|       10248 |           41017.36 |
+|       10249 |           18081.81 |
+|       10250 |           64600.34 |
+|       10251 |          18354.595 |
+|       10252 |           39551.93 |
+|       10253 | 38602.729999999996 |
+|       10254 | 31427.457500000004 |
+|       10255 | 22379.065000000002 |
+|       10256 | 29757.182500000003 |
+|       10257 |           64600.34 |
+|       10258 |  36307.39333333333 |
+|       10259 | 37637.049999999996 |
+|       10260 | 32356.675000000003 |
+|       10261 |           20255.91 |
+|       10262 |  61003.93307692308 |
+|       10263 | 35123.159999999996 |
+|       10264 |          17446.495 |
+|       10265 |          25106.685 |
+|       10266 |          50545.695 |
+|       10267 |  49434.23499999999 |
+|       10268 |           36160.56 |
+|       10269 |  27558.52666666667 |
+|       10270 |  35866.51666666666 |
+|       10271 |          64759.629 |
+|       10272 |           57985.67 |
+|       10273 |          33280.285 |
+|       10274 |           27192.66 |
+|       10275 |           45446.75 |
+|       10276 |           28598.98 |
+|       10277 |           43247.42 |
+|       10278 | 27583.693333333333 |
+|       10279 |  61003.93307692308 |
+|       10280 | 47058.630000000005 |
+|       10281 |           57985.67 |
+|       10282 |          64759.629 |
+|       10283 |          37317.425 |
+|       10284 | 39612.115000000005 |
+|       10285 |           51540.19 |
+|       10286 | 32401.226666666666 |
+|       10287 |           58856.78 |
+|       10288 | 37637.049999999996 |
+|       10289 |           55820.14 |
+|       10290 |            8826.42 |
+|       10291 |  44753.11000000001 |
+|       10292 |           41017.36 |
+|       10293 | 47058.630000000005 |
+|       10294 |           28598.98 |
+|       10295 |          17446.495 |
+|       10296 |           34993.92 |
+|       10297 |          28878.215 |
+|       10298 |  8059.986666666667 |
+|       10299 |           37083.46 |
+|       10300 |         21292.8975 |
+|       10301 | 39612.115000000005 |
+|       10302 | 38602.729999999996 |
+|       10303 | 27361.809999999998 |
+|       10304 | 32417.149999999998 |
+|       10305 |           51540.19 |
+|       10306 |  52602.60333333333 |
+|       10307 |          33753.485 |
+|       10308 | 42777.994999999995 |
+|       10309 |         29149.7975 |
+|       10310 |  50153.28999999999 |
+|       10311 |  61003.93307692308 |
+|       10312 |          64759.629 |
+|       10313 |           37619.46 |
+|       10314 |          50297.775 |
+|       10315 |           45446.75 |
+|       10316 |           39120.42 |
+|       10317 | 30195.767499999998 |
+|       10318 |           57985.67 |
+|       10319 |          16572.465 |
+|       10320 |           37877.44 |
+|       10321 |           32974.59 |
+|       10322 |            43895.1 |
+|       10323 |         21292.8975 |
+|       10324 |  29347.08666666667 |
+|       10325 |         29149.7975 |
+|       10326 |           37877.44 |
+|       10327 | 29757.182500000003 |
+|       10328 |           45985.24 |
+|       10329 |           41017.36 |
+|       10330 | 31338.576666666664 |
+|       10331 | 27894.053333333333 |
+|       10332 |  52602.60333333333 |
+|       10333 | 24825.393333333337 |
+|       10334 |           37877.44 |
+|       10335 |          64759.629 |
+|       10336 | 32401.226666666666 |
+|       10337 | 25931.733333333334 |
+|       10338 |           8360.025 |
+|       10339 |  36307.39333333333 |
+|       10340 | 23159.426666666666 |
+|       10341 |  27558.52666666667 |
+|       10342 |         48841.1825 |
+|       10343 |          33760.735 |
+|       10344 | 24978.713333333333 |
+|       10345 |  8059.986666666667 |
+|       10346 | 27583.693333333333 |
+|       10347 |         48841.1825 |
+|       10348 |  40205.09333333333 |
+|       10349 |  49434.23499999999 |
+|       10350 |  61003.93307692308 |
+|       10351 |            29601.5 |
+|       10352 |            8826.42 |
+|       10353 |           19098.14 |
+|       10354 | 31427.457500000004 |
+|       10355 |  61003.93307692308 |
+|       10356 |  26190.11333333333 |
+|       10357 |          64759.629 |
+|       10358 |  61003.93307692308 |
+|       10359 |          33760.735 |
+|       10360 | 39275.284999999996 |
+|       10361 |  35866.51666666666 |
+|       10362 | 30195.767499999998 |
+|       10363 | 37987.049999999996 |
+|       10364 | 24978.713333333333 |
+|       10365 | 36317.043333333335 |
+|       10366 |           8360.025 |
+|       10367 |  34853.98666666667 |
+|       10368 |          64759.629 |
+|       10369 |           27192.66 |
+|       10370 |         38499.0325 |
+|       10371 |          64759.629 |
+|       10372 |  36307.39333333333 |
+|       10373 |  34790.12666666667 |
+|       10374 | 19823.039999999997 |
+|       10375 |           45446.75 |
+|       10376 |  4564.674999999999 |
+|       10377 |           37083.46 |
+|       10378 |  61003.93307692308 |
+|       10379 |  61003.93307692308 |
+|       10380 |  61003.93307692308 |
+|       10381 |           74941.25 |
+|       10382 |          64759.629 |
+|       10383 |  61003.93307692308 |
+|       10384 |           74941.25 |
+|       10385 |          64759.629 |
+|       10386 |  61003.93307692308 |
+|       10387 |           43247.42 |
+|       10388 |           32974.59 |
+|       10389 |  44753.11000000001 |
+|       10390 |          64759.629 |
+|       10391 |         38499.0325 |
+|       10392 |            17421.3 |
+|       10393 | 31427.457500000004 |
+|       10394 |  61003.93307692308 |
+|       10395 |  26190.11333333333 |
+|       10396 |          64759.629 |
+|       10397 | 23496.146666666667 |
+|       10398 |          33760.735 |
+|       10399 | 39275.284999999996 |
+|       10400 |           64600.34 |
+|       10401 |          18354.595 |
+|       10402 |           39551.93 |
+|       10403 | 38602.729999999996 |
+|       10404 | 31427.457500000004 |
+|       10405 | 22379.065000000002 |
+|       10406 | 29757.182500000003 |
+|       10407 |           64600.34 |
+|       10408 |  36307.39333333333 |
+|       10409 | 37637.049999999996 |
+|       10410 | 32356.675000000003 |
+|       10411 |           20255.91 |
+|       10412 |  61003.93307692308 |
+|       10413 | 35123.159999999996 |
+|       10414 |          17446.495 |
+|       10415 |          25106.685 |
+|       10416 |          50545.695 |
+|       10417 |  61003.93307692308 |
+|       10418 |           36160.56 |
+|       10419 |  27558.52666666667 |
+|       10420 |  35866.51666666666 |
+|       10421 |          64759.629 |
+|       10422 |           57985.67 |
+|       10423 |          33280.285 |
+|       10424 |  61003.93307692308 |
+|       10425 |           45446.75 |
++-------------+--------------------+
+326 rows in set (0.00 sec)
 
