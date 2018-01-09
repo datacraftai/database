@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<!--Name       : Ankita Upadhyay
+    Zid        : z136412
+    Assignment : Assignment 8
+    Course     : CSCI 566
+    Section    : Section 3
+    Instructor : Jon Lehuta
+    TA         : Ishaan Mohammed
+    Semester   : Fall 2017-->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div.container {
+            width: 100%;
+            background : #ffb3b3;
+        }
+
+         div.logo {
+             width: 100%;
+             background : #ff3333;
+         }
+        div.gogo {
+            width: 100%;
+            background : #b30000;
+        }
+
+
+    </style>
+</head>
+<head>
+    <title>Section : </title>
+</head>
+<body>
+<form>
+
+    <pre><h1 align="center"><em> Name   : Ankita Upadhyay</em></h1></pre>
+    <pre><h2 align="center">Section :  Section 3</h2></pre>
+    <div class="container"><h2>An input box for entering a name</h2>
+        Name:
+        <input type="text" name="name" value="">
+    <table ><tr><td> <h2>An ordered list of the classes taken by me currently</h2>
+        <ol type="disc">
+            <li>CSCI 566 MSTR Databases</li>
+            <li>CSCI 567 Introduction to Software Engineering</li>
+            <li>CSCI 689 Object Oriented Programming</li>
+<a href = "mailto:kdavis@niu.edu?subject=
+subject line&body=any body text you want"
+>Send me an email</a>
+        </ol>
+    </td></tr>
+    </table>
+    </div>
+    <div class="logo">
+
+    <table ><tr><td><h2>A form with drop down list of the classes taken by me currently</h2>
+    <form>
+        <select>
+            <option value="CSCI 566">CSCI 566 MSTR Databases</option>
+            <option value="CSCI 567">CSCI 567 Introduction to Software Engineering</option>
+            <option value="CSCI 689">CSCI 689 Object Oriented Programming</option>
+        </select><br>
+        <br>
+        <br>
+        <h2>Radio buttons with year in school choices</h2>
+        <input type="radio" name="yearinschool" value="Freshman"> Freshman<br>
+        <input type="radio" name="yearinschool" value="Sophomore"> Sophomore<br>
+        <input type="radio" name="yearinschool" value="Junior"> Junior<br>
+        <input type="radio" name="yearinschool" value="Senior"> Senior<br>
+        <input type="radio" name="yearinschool" value="Student-at-large"> Student-at-large<br>
+        <input type="radio" name="yearinschool" value="Graduate"> Graduate<br>
+        
+    <div class="gogo">
+        <form><h2>Checkboxes for meal choices</h2>
+            <input type="checkbox" name="mealchoices" value="vegetarian"> vegetarian<br>
+            <input type="checkbox" name="mealchoices" value=" gluten free" checked>  gluten free<br>
+            <input type="checkbox" name="mealchoices" value="vegan"> vegan<br>
+            <input type="checkbox" name="mealchoices" value="no nuts" checked>   no nuts<br><br><br>
+
+            <br>
+            <h2>Two buttons</h2>
+            <input type="submit" value="Submit">
+            <input type="submit" value="Cancel">
+        </form>
+    </form>
+    </table>
+    </div>
+
+
+</form>
+</body>
+</html>
