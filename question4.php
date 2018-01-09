@@ -1,5 +1,5 @@
 <?php
-include('config.php');//including configuration file
+include('config1.php');//including configuration file
 
 ?>
 <!--html tag starts-->
@@ -8,8 +8,7 @@ include('config.php');//including configuration file
 
 <head><h1>Assignment 10</h1>
 
-
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" type="text/css" href="style1.css">
     <p id="demo"></p>
     <title></title>
@@ -19,7 +18,6 @@ include('config.php');//including configuration file
 
     <script>
 <!--function showUser which passes the chosen dopdown option to fetch_question3.php to pass the value in the where caluse-->
-
         function showUser(str) {
             if (str.length == 0) {
                 document.getElementById("txtHint").innerHTML = "";
@@ -31,7 +29,7 @@ include('config.php');//including configuration file
                         document.getElementById("txtHint").innerHTML = this.responseText;
                     }
                 };
-                xmlhttp.open("GET", "fetch_question3.php?q=" + str, true);
+                xmlhttp.open("GET", "fetch_question4.php?q=" + str, true);
                 xmlhttp.send();
             }
         }
@@ -52,20 +50,19 @@ include('config.php');//including configuration file
 
 <fieldset>
 <!--labels the name of the dropdownlist-->
-
-    <label>Select distance</label>
+    <label>Select Horse Name</label>
 <!--drop down select option starts,here we select option for the dropdown from the mysql database dynamically-->
 
     <select name="distance" onchange="showUser(this.value)">
-        <option>Select Distance</option>
+        <option>Select Horse Name</option>
         <?php
-        $query = 'select distinct distance distance from race order by distance';
-        $result = $conn->query($query);
-       $allrecords=$result->fetchAll();
+        $query = 'select name from horse;';
+       $result = mysqli_query($link, $query);
+        $count = mysqli_num_rows($result);
 /*displaying all distinct records for the option*/
-       foreach($allrecords as $key => $row)
-{
-            echo "<option >" . $row['distance'] . "</option>";
+
+        while ($row = $result->fetch_assoc()) {
+            echo "<option >" . $row['name'] . "</option>";
         }
         ?>
     </select>

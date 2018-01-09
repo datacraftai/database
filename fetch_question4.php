@@ -1,15 +1,22 @@
 <?php
-include('config.php');//including configuration file
+include('config1.php');//including configuration file
+
 ?>
 <?php
 
 // get the q parameter from URL
-$q = $_REQUEST["q"];
+$q =mysqli_real_escape_string($link, $_REQUEST["q"]);//escaping the special characters
 
-$query = "select distance,name  from race where distance='$q'";//storing sql query in the variable
-/*executing the sql query and storing all records in allrecords variable*/
- $result = $conn->query($query);
-       $allrecords=$result->fetchAll();?>
+
+$query ="select h.name horsename , r.name racename,
+rs.finish position,rs.tm time 
+from horse h,race r,runsin rs 
+where rs.hid=h.horse_id and rs.rid=r.race_id and 
+h.name='$q'";//storing sql query in the variable
+/*executing the sql query and storing all records in variable*/
+
+ $result = mysqli_query($link, $query);
+       ?>
 <!--html tag starts-->
 <html>
 <!--head tag starts-->
@@ -106,35 +113,40 @@ $query = "select distance,name  from race where distance='$q'";//storing sql que
 <!--body tag starts-->
 
 <body>
-	<h1>Question 3</h1>
+	<h1>Question 4</h1>
 <!--table tag starts which have table header names and table row names indicated by th and tr respectively-->
-
 	<table class="data-table">
-		<caption class="title"><h2>Allow the user to choose(from a drop down)a distance and then list all of the races with that
-distance</h2></caption>
+		<caption class="title"><h2>Choose a horse name from a drop down and show all the races that horse has been in and what
+position they finished in and what the time was</h2></caption>
 		<thead>
 			<tr>
+			<th>Horse Name</th>
 				<th>Race Name</th>
 				
-				<th>Distances</th>
+				<th>Position</th>
+				<th>Time</th>
 				
 				</tr>
 		</thead>
 		<tbody>
 
 <?php
-/*foreach loop to display each record in the table */
-foreach($allrecords as $key => $row) {
-   $name = $row['name'];
-  
-    $distance = $row['distance'];
+/*while loop to display each record in the table */
+while ($row = $result->fetch_assoc()) 
+ {
+   $hname = $row['horsename'];
+    $rname = $row['racename'];
+   $position = $row['position'];
+    $time = $row['time'];
+	
    
 
    
       echo '<tr>
-					<td>'.$row['name'].'</td>
-					
-					<td>'.$row['distance'].'</td>
+	  <td>'.$row['horsename'].'</td>
+					<td>'.$row['racename'].'</td>
+					<td>'.$row['position'].'</td>
+					<td>'.$row['time'].'</td>
 					
 					
 				</tr>';

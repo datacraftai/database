@@ -6,10 +6,10 @@ include('config.php');
 <!--html script starts-->
 <html xmlns="http://www.w3.org/1999/xhtml">
 <!--html head starts shows the name of the page-->
-<head><h1>Assignment 11</h1>
+<head><h1>Assignment 10</h1>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <!--html title -->
-    <title> Assignment 11</title>
+    <title> Assignment 10</title>
 	<!--css file for styling the html and php pages-->
     <link rel="stylesheet" type="text/css" href="style2.css">
     <p id="demo"></p>
@@ -28,8 +28,8 @@ include('config.php');
 <fieldset class="fieldset-auto-width">
     <h3>Name: Ankita Upadhyay</h3>
 <h3>zID: z1836412</h3>
-<h3>Assignment: 11</h3>
-<h3>Due Date:Nov,27th 2017</h3>
+<h3>Assignment: 10</h3>
+<h3>Due Date:Nov,20th 2017</h3>
 
 
 
@@ -39,7 +39,8 @@ include('config.php');
         <button class="tablinks" onclick="openQuestion1(event, 'Question1')"><h2>Question1</h2></button>
         <button class="tablinks" onclick="openQuestion2(event, 'Question2')"><h2>Question2</h2></button>
         <button class="tablinks" onclick="openQuestion3(event, 'Question3')"><h2>Question3</h2></button>
-            </div>
+        <button class="tablinks" onclick="openQuestion4(event, 'Question4')"><h2>Question4</h2></button>
+    </div>
 <!--naming each button  -->
     <div id="Question1" class="tabcontent">
         <h3>Question1</h3>
@@ -54,7 +55,11 @@ include('config.php');
         <h3>Question3</h3>
         <p>Question3</p>
     </div>
-    	<!--writing a script for onclick event of each button. each button onclick will navigate to a new page to show results -->
+    <div id="Question4" class="tabcontent">
+        <h3>Question4</h3>
+        <p>Question4</p>
+    </div>
+	<!--writing a script for onclick event of each button. each button onclick will navigate to a new page to show results -->
         <script>
 		
         function openQuestion1(event, q1) {
@@ -66,7 +71,10 @@ include('config.php');
         function openQuestion3(event, q3) {
             window.location.href ="question3.php";
         }
-       
+        function openQuestion4(event, q4) {
+            window.location.href ="question4.php";
+        }
+
     </script>
 
 <!--script ends -->
