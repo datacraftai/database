@@ -1,0 +1,97 @@
+mysql> use z1836412;
+Database changed
+mysql> create table tempTable(tempNo INT,tempName char(10))ENGINE=INNODB;
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> create index temp_idx on tempTable(tempNo);
+Query OK, 0 rows affected (0.25 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> start transaction;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into tempTable values(1, 'T1');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into tempTable values(2, 'T2');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use z1836412;
+Database changed
+mysql> select * from tempTable;
+Empty set (0.00 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> \t
+mysql> select * from tempTable;
++--------+----------+
+| tempNo | tempName |
++--------+----------+
+|      1 | T1       |
+|      2 | T2       |
++--------+----------+
+2 rows in set (0.01 sec)
+
+mysql> \t
+mysql> use z1836412;
+Database changed
+mysql> start transaction;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> delete from tempTable where tempNo = 1;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from tempTable;
++--------+----------+
+| tempNo | tempName |
++--------+----------+
+|      2 | T2       |
++--------+----------+
+1 row in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> select * from tempTable;
++--------+----------+
+| tempNo | tempName |
++--------+----------+
+|      1 | T1       |
+|      2 | T2       |
++--------+----------+
+2 rows in set (0.00 sec)
+
+mysql> \t
+mysql> use z1836412;
+Database changed
+mysql> start transaction;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> use z1836412;
+Database changed
+mysql> start transaction;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> update tempTable set tempName = 'T11' where tempNo=1;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+mysql> update tempTable
+    -> set tempName= 'T22'
+    -> where tempNo = 2;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update tempTable
+    -> set tempName = 'T21'
+    -> where tempNo= 2;
+Query OK, 1 row affected (18.92 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> 
+mysql> update tempTable
+    -> set tempName = 'T12'
+    -> where tempNo = 1;
+ERROR 1213 (40001): Deadlock found when trying to get lock; try restarting transaction
